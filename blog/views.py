@@ -3,29 +3,14 @@ from django.http import HttpResponse, JsonResponse
 # Create your views here.
 
 def index(request):
-	return HttpResponse("Hello")
-
-def api(request):
-	data = {
-		"1": {
-		"title": "مقاله اول",
-		"id": 20,
-		"slug": "first_article",
-		},
-		"2": {
-		"title": "مقاله اول",
-		"id": 20,
-		"slug": "second_article",
-		}
-		,"3": {
-		"title": "مقاله اول",
-		"id": 20,
-		"slug": "third_article",
-		}
-		,"4": {
-		"title": "مقاله اول",
-		"id": 20,
-		"slug": "fourth_article",
-		},
+	context = {
+		"articles": [
+			{
+				"title": "پاسخ تند مجیدی به صحبتهای آقای ف!",
+				"description": "فرهاد مجیدی ضمن اعلام مخالفت با فروش مهدی قایدی، از تلاش هایش برای اجاره کمپ تمرین، هتل مناسب و بازی دوستانه برای استقلال در امارات خبر داد.",
+				"image": "https://static2.farakav.com/files/pictures/01633965.jpg",
+			}
+		]
 	}
-	return JsonResponse(data)
+	return render(request, 'blog/home.html', context)
+
