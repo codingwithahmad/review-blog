@@ -7,7 +7,7 @@
 <body>
 	<article>
 		{% for article in articles %}
-			<img src="{{ article.image }}">
+			<img src="{{ article.image }}" width="300" height="300">
 			<h1>{{ article.title }}</h1>
 			<p>{{ article.description }}</p>
 		{% endfor %}
