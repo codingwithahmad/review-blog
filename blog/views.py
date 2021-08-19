@@ -9,3 +9,10 @@ def index(request):
 	}
 	return render(request, 'blog/home.html', context)
 
+
+def detail(request, slug):
+	context = {
+		"art": Article.objects.get(slug=slug)
+	}
+	print(context)
+	return render(request, 'blog/detail.html', context)
