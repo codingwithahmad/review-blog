@@ -15,4 +15,4 @@ def detail(request, slug):
 		"art": Article.objects.get(slug=slug)
 	}
 	print(context)
-	return render(request, 'blog/detail.html', context)
+	return render(request, 'blog/single.html', context)
