@@ -19,6 +19,7 @@ class Category(models.Model):
 
 
 
+
 class Article(models.Model):
 	STATUS_CHOICES = (
 			('d', 'پیش نویش'),
