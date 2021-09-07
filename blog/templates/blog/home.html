@@ -39,6 +39,12 @@
                         <a href="#!">مهمان</a>
                         {{ article.jpublish }}
                     </p>
+                <div>
+                    {% for cat in article.category.all %}
+                        <a href="#">#{{ cat.title }}</a>
+                    {% endfor %}
+                </div>
+                <hr>
                 </div>
                 {% endfor %}
                 <!-- Divider-->
