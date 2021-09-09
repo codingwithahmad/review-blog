@@ -6,7 +6,6 @@ from .models import Article, Category
 def index(request):
 	context = {
 		"articles": Article.objects.filter(status="p"),
-		"categories": Category.objects.filter(status=True),
 	}
 	return render(request, 'blog/home.html', context)
 
