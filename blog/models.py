@@ -28,7 +28,7 @@ class Article(models.Model):
 
 	title = models.CharField(max_length=200, verbose_name="عنوان مقاله")
 	slug = models.SlugField(max_length=100, unique=True, verbose_name="آدرس مقاله")
-	category = models.ManyToManyField(Category, verbose_name="دسته بندی")
+	category = models.ManyToManyField(Category, verbose_name="دسته بندی", related_name="articles")
 	description = models.TextField(verbose_name="محتوا")
 	thumbnail = models.ImageField(upload_to="images", verbose_name="تصویر")
 	publish = models.DateTimeField(default=timezone.now, verbose_name="زمان انتشار")
@@ -48,3 +48,6 @@ class Article(models.Model):
 		return jalali_convertor(self.publish)
 
 	jpublish.short_description = "زمان انتشار"
+
+	def category_publish(self):
+		return self.category.filter(status=True)
