@@ -5,14 +5,14 @@ from .models import Article, Category
 
 def index(request):
 	context = {
-		"articles": Article.objects.filter(status="p"),
+		"articles": Article.objects.published(),
 	}
 	return render(request, 'blog/home.html', context)
 
 
 def detail(request, slug):
 	context = {
-		"art": get_object_or_404(Article, slug=slug, status="p")
+		"art": get_object_or_404(Article.objects.published(), slug=slug)
 	}
 	return render(request, 'blog/detail.html', context)
 
