@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 #from django.http import HttpResponse, JsonResponse
 from .models import Article, Category
 from django.core.paginator import Paginator
-from django.views.generic.list import ListView
+from django.views.generic import ListView, DetailView
 # Create your views here.
 
 # def index(request, page=1):
@@ -22,11 +22,17 @@ class ArticlesList(ListView):
 	queryset = Article.objects.published()
 	paginate_by = 1
 
-def detail(request, slug):
-	context = {
-		"art": get_object_or_404(Article.objects.published(), slug=slug)
-	}
-	return render(request, 'blog/detail.html', context)
+# def detail(request, slug):
+# 	context = {
+# 		"art": get_object_or_404(Article.objects.published(), slug=slug)
+# 	}
+# 	return render(request, 'blog/detail.html', context)
+
+class ArticleDetail(DetailView):
+	
+	def get_object(self):
+		slug = self.kwargs.get('slug')
+		return get_object_or_404(Article.objects.published(), slug=slug)
 
 
 def category(request, slug, page=1):

@@ -7,17 +7,17 @@
 {% endblock %}
 
 {% block title %}
-    {{ art.title }}
+    {{ object.title }}
 {% endblock %}
 
 {% block header %}
-<header class="masthead" style="background-image: url('{{art.thumbnail.url}}')">
+<header class="masthead" style="background-image: url('{{object.thumbnail.url}}')">
         <div class="container position-relative px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <div class="site-heading">
-                            <h1>{{ art.title }}</h1>
-                            <span class="subheading">{{ art.jpublish }}</span>
+                            <h1>{{ object.title }}</h1>
+                            <span class="subheading">{{ object.jpublish }}</span>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7" style="text-align: justify;">
-                        {{ art.description|linebreaks }}
+                        {{ object.description|linebreaks }}
                     </div>
                 </div>
             </div>
