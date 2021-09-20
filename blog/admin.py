@@ -1,6 +1,9 @@
 from django.contrib import admin
 from .models import Article, Category
 # Register your models here.
+
+
+
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
 	list_display = ["title", "slug", "jpublish", "status", "category_to_str"]
@@ -8,11 +11,30 @@ class ArticleAdmin(admin.ModelAdmin):
 	search_fields = ('title', 'slug')
 	prepopulated_fields = {"slug": ("title",)}
 	ordering = ['-status', '-publish']
+	actions = ['make_published', 'maek_draft']
 
 	def category_to_str(self, obj):
 		return ", ".join([category.title for category in obj.category.published()])
 
 	category_to_str.short_description = "دسته بندی ها"
+
+	@admin.action(description="انتشار مقالات انتخاب شده")
+	def make_published(self, request, queryset):
+		row_updated = queryset.update(status="p")
+		if row_updated == 1:
+			message_bit = "منتشر شد."
+		else:
+			message_bit = "منشتر شدند."
+		self.message_user(request, "{} مقاله {}".format(row_updated, message_bit))
+
+	@admin.action(description="پیش نویس شدن مقالات انتخاب شده")
+	def maek_draft(self, request, queryset):
+		row_updated = queryset.update(status="d")
+		if row_updated == 1:
+			message_bit = "پیش نویس شد."
+		else:
+			message_bit = "پیش نویس شدند."
+		self.message_user(request, "{} مقاله {}".format(row_updated, message_bit))
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
