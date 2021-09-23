@@ -2,6 +2,8 @@ from django.contrib import admin
 from .models import Article, Category
 # Register your models here.
 
+#admin header change
+admin.site.site_header = "وبلاگ جنگویی من"
 
 
 @admin.register(Article)
