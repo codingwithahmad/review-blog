@@ -8,8 +8,8 @@ admin.site.site_header = "وبلاگ جنگویی من"
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-	list_display = ["title", "slug", "thumbnail_tag", "jpublish", "status", "category_to_str"]
-	list_filter = ("publish", "status")
+	list_display = ["title", "slug", "thumbnail_tag", "jpublish", "author", "status", "category_to_str"]
+	list_filter = ("publish", "status", "author")
 	search_fields = ('title', 'slug')
 	prepopulated_fields = {"slug": ("title",)}
 	ordering = ['-status', '-publish']
@@ -37,6 +37,8 @@ class ArticleAdmin(admin.ModelAdmin):
 		else:
 			message_bit = "پیش نویس شدند."
 		self.message_user(request, "{} مقاله {}".format(row_updated, message_bit))
+
+	
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
