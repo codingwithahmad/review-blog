@@ -16,3 +16,9 @@ body {
 	right: initial;
 	left: 0;
 }
+
+.errors {
+    color: red;
+    background-color: #e1c8c8;
+    padding: 20px 30px;
+}
