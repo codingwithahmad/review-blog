@@ -4,9 +4,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
 from blog.models import Article
 # Create your views here.
-@login_required
-def home(request):
-	return render(request, 'registration/home.html')
 
 
 class ArticlesList(LoginRequiredMixin, ListView):

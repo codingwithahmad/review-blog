@@ -15,11 +15,7 @@ class ArticleAdmin(admin.ModelAdmin):
 	ordering = ['-status', '-publish']
 	actions = ['make_published', 'maek_draft']
 
-	def category_to_str(self, obj):
-		return ", ".join([category.title for category in obj.category.published()])
-
-	category_to_str.short_description = "دسته بندی ها"
-
+	
 	@admin.action(description="انتشار مقالات انتخاب شده")
 	def make_published(self, request, queryset):
 		row_updated = queryset.update(status="p")

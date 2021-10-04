@@ -65,6 +65,12 @@ class Article(models.Model):
 
 	jpublish.short_description = "زمان انتشار"
 
+	def category_to_str(self):
+		return ", ".join([category.title for category in self.category.published()])
+
+
+	category_to_str.short_description = "دسته بندی ها"
+
 
 	def thumbnail_tag(self):
 		return format_html("<img width=100 height=75 style='border-radius: 10px' src='{}' />".format(self.thumbnail.url))
