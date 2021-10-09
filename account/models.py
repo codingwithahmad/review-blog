@@ -15,3 +15,6 @@ class User(AbstractUser):
 			return False
 
 	
+	is_special_user.boolean = True
+
+	is_special_user.short_description = "وضعیت کاربر ویژه"
