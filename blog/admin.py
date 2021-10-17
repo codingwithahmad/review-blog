@@ -8,7 +8,7 @@ admin.site.site_header = "وبلاگ جنگویی من"
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-	list_display = ["title", "slug", "thumbnail_tag", "jpublish", "author", "status", "category_to_str"]
+	list_display = ["title", "slug", "thumbnail_tag", "jpublish", "author", "is_special", "status", "category_to_str"]
 	list_filter = ("publish", "status", "author")
 	search_fields = ('title', 'slug')
 	prepopulated_fields = {"slug": ("title",)}

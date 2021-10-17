@@ -6,11 +6,11 @@ class FieldMixin():
 	def dispatch(self, request, *args, **kwargs):
 		if request.user.is_superuser:
 			self.fields = [ "author", "title", "slug", "category", "description",
-			 "thumbnail", "publish", "status",
+			 "thumbnail", "publish", "is_special", "status",
 			 ]
 		elif request.user.is_author:
 			self.fields = [ "title", "slug", "category", "description",
-			 "thumbnail", "publish",
+			 "thumbnail", "publish", "is_special",
 			 ]
 		else:
 			raise Http404("شما حق دسترسی به این صفحه را ندارید")
