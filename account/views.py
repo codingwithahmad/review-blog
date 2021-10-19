@@ -23,6 +23,7 @@ from django.views.generic import (
 )
 from blog.models import Article
 from .models import User
+from .forms import ProfileForm
 # Create your views here.
 
 
@@ -57,8 +58,7 @@ class ArticleDelete(SuperUserAccessMixin, DeleteView):
 class Profile(UpdateView):
 	model = User
 	template_name = "registration/profile.html"
-	fields = ['username', 'email', 'first_name', 'last_name',
-	 'special_user', 'is_author']
+	form_class = ProfileForm	
 
 	success_url = reverse_lazy("account:profile")
 
