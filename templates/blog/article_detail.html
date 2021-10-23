@@ -17,7 +17,11 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <div class="site-heading">
-                            <h1>{{ object.title }}</h1>
+                            <h1>{{ object.title }}
+                                {% if article.is_special %}
+                                <span class="badge bg-danger" style="font-size: 14px;">ویژه</span>
+                                {% endif %}
+                            </h1>
                             <span class="subheading">{{ object.jpublish }}</span>
                     </div>
                 </div>
@@ -34,7 +38,8 @@
                             {% if user.is_authenticated and user.is_special_user or user == object.author or user.is_superuser %}
                                 {{ object.description|safe }}
                             {% else %}
-                                <p>این مقاله ویژه است و برای مشاهده آن باید <a href="#">اشتراک ویژه</a> داشته باشید</p>
+                                {{article.description|striptags|truncatewords:30}}
+                                <p class="alert alert-warning">این مقاله ویژه است و برای مشاهده آن باید <a class="alert-link" href="#">اشتراک ویژه</a> داشته باشید</p>
                             {% endif %}
                         {% else %}
                             {{ object.description|safe }}
