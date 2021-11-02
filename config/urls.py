@@ -19,6 +19,7 @@ from account.views import Login, Register, activate
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('comment/', include('comment.urls')),
     path('', include("blog.urls")),
     path('account/', include('account.urls')),
     path('', include('django.contrib.auth.urls')),
