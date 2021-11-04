@@ -9,7 +9,7 @@
         </button>
     </div>
     <div class="modal-body">
-        <p class="lead comment-translatable">{% block content %}{% trans "آیا از حذف دیدگاه" %}{% endblock content %} <strong>«{{ comment.content|slice:":25" }}»</strong> اطمینان دارید?</p>
+        <p class="lead comment-translatable">{% block content %}{% trans "آیا از حذف دیدگاه" %}{% endblock content %} <strong>«{{ comment.content|slice:":25" }}» از {{ comment.user.get_full_name }}</strong> اطمینان دارید?</p>
     </div>
     <div class="modal-footer">
         <button type="button" class="comment-translatable modal-cancel-btn {% block close_btn_cls %}btn btn-secondary{% endblock close_btn_cls %}" data-dismiss="modal">{% trans "Close" %}</button>
