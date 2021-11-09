@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Article, Category
+from .models import Article, Category, IPaddress
 # Register your models here.
 
 #admin header change
@@ -45,3 +45,6 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 
+@admin.register(IPaddress)
+class IPaddressAdmin(admin.ModelAdmin):
+	pass
