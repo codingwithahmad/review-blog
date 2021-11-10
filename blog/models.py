@@ -68,7 +68,7 @@ class Article(models.Model):
 	is_special = models.BooleanField(default=False, verbose_name="عضویت ویژه")
 	status = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name="وضعیت")
 	comments = GenericRelation(Comment, )
-	hits = models.ManyToManyField(IPaddress, blank=True, related_name="hits", verbose_name="بازدید ها")
+	hits = models.ManyToManyField(IPaddress, blank=True, through="ArticleHits", related_name="hits", verbose_name="بازدید ها")
 
 	class Meta:
 		verbose_name = "مقاله"
@@ -100,3 +100,9 @@ class Article(models.Model):
 		return reverse("account:home")
 
 	objects = ArticleManager()
+
+class ArticleHits(models.Model):
+	article = models.ForeignKey(Article, on_delete=models.CASCADE)
+	ip_address = models.ForeignKey(IPaddress, on_delete=models.CASCADE)
+	created = models.DateTimeField(auto_now_add=True)
+		
