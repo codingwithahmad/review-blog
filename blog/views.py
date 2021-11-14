@@ -5,6 +5,8 @@ from account.models import User
 from django.core.paginator import Paginator
 from django.views.generic import ListView, DetailView
 from account.mixins import AuthorAccessMixin
+from django.db.models import Count, Q
+from datetime import datetime, timedelta
 # Create your views here.
 
 # def index(request, page=1):
@@ -20,8 +22,9 @@ from account.mixins import AuthorAccessMixin
 
 class ArticlesList(ListView):
 	# model = Article
-	queryset = Article.objects.published()
-	paginate_by = 1
+	last_month = datetime.today() - timedelta(days=30)
+	queryset = Article.objects.published().annotate(count=Count('hits', filter=Q(articlehits__created__gte=last_month))).order_by('-count', '-publish')[:5]
+	paginate_by = 2
 
 # def detail(request, slug):
 # 	context = {
