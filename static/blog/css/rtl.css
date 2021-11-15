@@ -102,3 +102,11 @@ header.masthead .site-heading h1 {
 .nav ul > li > ul > li > ul > li:hover > ul {
     display:block !important;
 }
+
+
+.popular-articles {
+    border: 1px solid #514d4d;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 5px 5px #999292;
+}
