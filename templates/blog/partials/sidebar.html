@@ -1,8 +1,8 @@
 <div class="popular-articles">
   <h2 class="h4">
-    مقالات پربازدید ماه
+    {{ title }}
     <hr>
-    {% for a in popular_articles %}
+    {% for a in articles %}
       <div>
         <a href="{ url 'blog:detail' a.slug }">{{ a.title }}</a>
       </div>
