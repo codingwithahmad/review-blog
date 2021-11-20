@@ -7,6 +7,7 @@ from django.views.generic import ListView, DetailView
 from account.mixins import AuthorAccessMixin
 from django.db.models import Count, Q
 from datetime import datetime, timedelta
+from django.db.models import Q
 # Create your views here.
 
 # def index(request, page=1):
@@ -95,3 +96,18 @@ class AuthorList(ListView):
 		context = super().get_context_data(**kwargs)
 		context['author'] = author
 		return context
+
+
+class SearchList(ListView):
+	paginate_by = 1
+	template_name = "blog/search_list.html"
+
+	def get_queryset(self):
+		search = self.request.GET.get('q')
+		return Article.objects.filter(Q(description__icontains=search) | Q(description__icontains=search))
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['search'] = self.request.GET.get('q')
+		return context
+
